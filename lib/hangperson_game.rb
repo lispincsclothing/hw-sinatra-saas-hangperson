@@ -7,9 +7,12 @@ class HangpersonGame
 
   # def initialize()
   # end
-  
+  attr_accessor :word, :guesses, :wrong_guesses
+
   def initialize(word)
     @word = word
+    @guesses = ''
+    @wrong_guesses = ''
   end
 
   def self.get_random_word
