@@ -22,10 +22,19 @@ class HangpersonGame
   end
 
   def guess(letter)
+    letter.downcase!
     if @word.include?(letter)
-      @guesses += letter
+      if @guesses.include?(letter)
+        return false
+      else
+        @guesses << letter
+      end
     else
-      @wrong_guesses += letter
+      if @wrong_guesses.include?(letter)
+        return false
+      else
+        @wrong_guesses << letter
+      end
     end
   end
 end
