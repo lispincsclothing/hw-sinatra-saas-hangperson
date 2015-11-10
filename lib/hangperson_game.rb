@@ -22,8 +22,8 @@ class HangpersonGame
   end
 
   def guess(letter)
-    if (letter.nil?) || (letter.empty?) || (letter =~ /[^:alpha:]/)
-      raise ArgumentError
+    if (letter.nil?) || (letter.empty?) || (letter =~ /[^[:alpha:]]/)
+      fail ArgumentError
     end
     letter.downcase!
     if @word.include?(letter)
@@ -39,5 +39,31 @@ class HangpersonGame
         @wrong_guesses << letter
       end
     end
+  end
+
+  def word_with_guesses
+    printword = ''
+    length = @word.length
+    i = 0
+    while i < length
+      if @guesses.include? @word[i]
+        printword << @word[i]
+      else
+        printword << '-'
+      end
+      i += 1
+    end
+    printword
+  end
+
+  def check_win_or_lose
+    return :lose if wrong_guesses.length > 6
+    i = 0
+    length = @word.length
+    while i < length
+      return :play unless @guesses.include? @word[i]
+      i += 1
+    end
+    :win
   end
 end
