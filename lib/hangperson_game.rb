@@ -22,4 +22,7 @@ class HangpersonGame
     Net::HTTP.post_form(uri ,{}).body
   end
 
+  def guess(letter)
+    @guesses=letter
+  end
 end
